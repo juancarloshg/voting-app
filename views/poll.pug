@@ -1,0 +1,30 @@
+extends layout
+
+block content
+    <canvas id="myChart" width="400" height="200"></canvas>
+    <hr>
+
+    script(type='text/javascript').
+        var labels = "#{labels}".split(",")
+        var votes = [#{votes}]
+    <form class="form-horizontal" method="POST" action="/poll/#{id}/vote">
+        - var count = 0
+        each label in labels[0]
+            <div class="radio">
+                <label>
+                    <input type="radio" name="optionsRadios" id="optionsRadios1" value="#{count}"> #{label}
+                </label>
+            </div>
+            - count++
+        <br />
+        <button type="submit" class="btn btn-primary">Send vote</button>
+
+        if currentName === author
+            <a href="#{id}/delete"><button type="button" class="btn btn-warning pull-right">Remove poll</button></a>
+        if currentUser
+            <a href="#{id}/edit"><button type="button" class="btn btn-success pull-right">Edit poll</button></a>
+    </form>
+
+            
+    <script src='https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.2.2/Chart.js'></script>
+    <script src='/myChart.js'></script>

@@ -1,0 +1,10 @@
+extends layout
+
+block content
+  if currentUser
+    <a href="/poll"><button type="button" class="btn btn-primary">New poll</button></a>
+    <hr />
+  <ul class="list-group">
+    each poll in polls
+      <a href="/poll/#{poll._id}"><li class="list-group-item"> #{poll.title}</li></a>
+  </ul>
